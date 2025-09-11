@@ -4,8 +4,8 @@ from app.models.db import create_tables
 
 
 app = FastAPI(
-    title="jarvis-notes",
-    debug=True,
+    title=settings.app_name,
+    debug=settings.debug,
     ignore_trailing_slash=True,
     root_path="/note",
 )
@@ -20,4 +20,4 @@ app.include_router(notes.router)
 
 @app.get("/")
 def read_root():
-    return {"service": "jarvis-notes"}
+    return {"service": settings.app_name}

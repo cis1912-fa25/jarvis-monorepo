@@ -1,11 +1,12 @@
 from fastapi import FastAPI
 from app.routers import auth
 from app.models.db import create_tables
+from app.config import settings
 
 
 app = FastAPI(
-    title="jarvis-auth",
-    debug=True,
+    title=settings.app_name,
+    debug=settings.debug,
     ignore_trailing_slash=True,
     root_path="/auth",
 )
@@ -20,4 +21,4 @@ app.include_router(auth.router)
 
 @app.get("/")
 def read_root():
-    return {"service": "jarvis-auth"}
+    return {"service": settings.app_name}

@@ -1,5 +1,17 @@
-class Settings:
-    auth_service_url: str = "http://localhost:8000"
-    database_url: str = "sqlite:///../../jarvis.db"
+from pydantic import Field
+from shared.config import BaseServiceSettings
 
-settings = Settings()
+
+class NotesServiceSettings(BaseServiceSettings):
+    """Settings specific to the notes service"""
+    # Auth service configuration
+    auth_service_url: str = Field(
+        description="URL of the auth service"
+    )
+
+    app_name: str = Field(
+        default="jarvis-notes",
+        description="Application name"
+    )
+
+settings = NotesServiceSettings()

@@ -1,10 +1,39 @@
-class Settings:
-    database_url: str = "sqlite:///../../jarvis.db"
-    jwt_secret_key: str = "super-secret-key-dont-use-this-in-production"
-    jwt_algorithm: str = "HS256"
-    access_token_expire_minutes: int = 30
-    refresh_token_expire_days: int = 30
-    cookie_secure: bool = True
-    cookie_samesite: str = "None"
+from pydantic import Field
+from shared.config import BaseServiceSettings
 
-settings = Settings()
+
+class AuthServiceSettings(BaseServiceSettings):
+    """Settings specific to the auth service"""
+    # JWT settings
+    jwt_secret_key: str = Field(
+        description="Secret key for JWT token signing"
+    )
+    jwt_algorithm: str = Field(
+        default="HS256",
+        description="Algorithm for JWT token signing"
+    )
+    access_token_expire_minutes: int = Field(
+        default=30,
+        description="JWT token expiration time in minutes"
+    )
+    refresh_token_expire_days: int = Field(
+        default=30,
+        description="Refresh token expiration time in days"
+    )
+
+    # Cookie security settings
+    cookie_secure: bool = Field(
+        default=True,
+        description="Use secure cookies (HTTPS only)"
+    )
+    cookie_samesite: str = Field(
+        default="strict",
+        description="SameSite cookie attribute"
+    )
+
+    app_name: str = Field(
+        default="jarvis-auth",
+        description="Application name"
+    )
+
+settings = AuthServiceSettings()
