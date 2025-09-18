@@ -7,7 +7,7 @@ WORKDIR /service/app
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 # Copy all files into container
-COPY services/notes/. .
+COPY services/auth/. .
 
 # Copy the utilities folder into a similar structure on the container
 # Note the /, this is an absolute path
