@@ -16,8 +16,5 @@ COPY utilities /utilities
 # Install dependencies
 RUN uv sync --no-cache --link-mode=copy
 
-# Set default environment variables
-ENV AUTH_SERVICE_URL=http://host.docker.internal:8000
-
 # Set the command to run the service
-CMD ["uv", "run", "fastapi", "dev", "main.py", "--port", "8001", "--host", "0.0.0.0"]
+CMD ["uv", "run", "fastapi", "dev", "main.py", "--host", "0.0.0.0", "--port", "8000"]
