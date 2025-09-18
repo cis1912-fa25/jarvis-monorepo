@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from app.routers import notes
 from app.models.db import create_tables
-
+from app.config import settings
 
 app = FastAPI(
     title=settings.app_name,
