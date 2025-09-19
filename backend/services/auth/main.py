@@ -21,4 +21,4 @@ app.include_router(auth.router)
 
 @app.get("/")
 def read_root():
-    return {"service": 'asdf' + settings.app_name}
+    return {"service": settings.app_name}
